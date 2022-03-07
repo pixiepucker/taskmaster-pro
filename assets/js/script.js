@@ -1,4 +1,4 @@
-var tasks = {};
+var tasks ={};
 
 var createTask = function(taskText, taskDate, taskList) {
   // create elements that make up a task item
@@ -36,7 +36,7 @@ var loadTasks = function() {
     //loop over sub-array
     arr.forEach(function(task) {
       createTask(task.text, task.date, list);
-    });
+     });
   });
 };
 
@@ -78,18 +78,6 @@ $("#task-form-modal .btn-primary").click(function() {
   }
 });
 
-// remove all tasks
-$("#remove-tasks").on("click", function() {
-  for (var key in tasks) {
-    tasks[key].length = 0;
-    $("#list-" + key).empty();
-  }
-  saveTasks();
-});
-
-// load tasks for the first time
-loadTasks();
-
 //event and callback function
 $(".list-group").on('click', 'p', function () {
   var text = $(this)
@@ -101,7 +89,7 @@ $(".list-group").on('click', 'p', function () {
   .val(text);
 
   $(this).replaceWith(textInput);
-  textInput.trigger('focus');
+  textInput.trigger("focus");
 });
 
 //new event listenter
@@ -132,7 +120,7 @@ $('.list-group').on('blur', 'textarea', function () {
   .text(text);
 
   //replace textarea with p element
-  $(this).repalceWith(taskP);
+  $(this).replaceWith(taskP);
 
 });
 
@@ -152,12 +140,12 @@ $('.list-group').on('click', 'span', function () {
   //swap out elements
   $(this).replaceWith(dateInput);
 
-  //automatically focus on new element 
+  //automatically focus on new element
   dateInput.trigger("focus");
 });
 
 //value of due date was changed
-$('.list-group').on('blur', "input[type='text']", function () {
+$('.list-group').on("blur", "input[type='text']", function () {
   //get current text 
   var date = $(this)
   .val()
@@ -175,7 +163,7 @@ $('.list-group').on('blur', "input[type='text']", function () {
   .index();
 
   //update task in array and resave to localStorage
-  task[status][index].date = date;
+  tasks[status][index].date = date;
   saveTasks();
 
   //recreate span element with bootstrap classes
@@ -184,11 +172,11 @@ $('.list-group').on('blur', "input[type='text']", function () {
   .text(date);
 
   //replace input with span element
-  $(this).repalceWith(taskSpan);
+  $(this).replaceWith(taskSpan);
 });
 
-//remove all tasks
-$('#remove-tasks').on('click', function () {
+// remove all tasks
+$("#remove-tasks").on("click", function() {
   for (var key in tasks) {
     tasks[key].length = 0;
     $("#list-" + key).empty();
@@ -196,5 +184,5 @@ $('#remove-tasks').on('click', function () {
   saveTasks();
 });
 
-//load tasks for the first time
+// load tasks for the first time
 loadTasks();
