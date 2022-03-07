@@ -193,7 +193,7 @@ $('.card .list-group').sortable({
     console.log('out', event.target);
   },
   update: function(event) {
-    
+
     //array to store the task data in
     var tempArr = [];
 
@@ -226,6 +226,22 @@ $('.card .list-group').sortable({
     saveTasks();
 
     console.log(tempArr);
+  }
+});
+
+//adds draggability to #trash
+$('#trash').droppable({
+  accept: '.card .list-group-item',
+  tolerance: 'touch',
+  drop: function(event, ui) {
+    console.log('drop');
+    ui.draggable.remove();
+  },
+  over: function(event, ui) {
+    console.log('over');
+  },
+  out: function (event, ui) {
+    console.log('out');
   }
 });
 
